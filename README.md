@@ -56,13 +56,9 @@
 
 ![](figures/studio2.png)
 
-3. 进入本示例工程的 `board `目录下，将该目录下的 `openocd` 文件夹拷贝
+3. 进入 `RT-Studio ` 的SDK管理器中，下载英飞凌的 `OpenOCD` 资源包。
 
    ![](figures/openocd01.png)
-
-4. 覆盖粘贴到  `RT-Thread Studio` 安装路径下的 `Debugger_Support_Packages` 文件夹下
-
-   ![](figures/openocd02.png)
 
 5. 编译、下载，验证运行结果
 
