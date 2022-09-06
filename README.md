@@ -60,6 +60,10 @@
 
    ![](figures/openocd01.png)
 
+4. 鼠标右键工程，点击 `同步 scons  配置至项目`
+
+   ![](figures/sync_proj.png)
+
 5. 编译、下载，验证运行结果
 
 * 点击 IDE 左上角的构建选项进行工程的编译。
