@@ -1,4 +1,4 @@
-# Cypress + RT-Thread 物联网 DEMO
+# Infineon + RT-Thread 物联网 DEMO
 
 ## 简介
 
