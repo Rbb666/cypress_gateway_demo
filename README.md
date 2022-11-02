@@ -122,5 +122,5 @@
 
 - [开发板官网主页](https://www.infineon.com/cms/en/product/evaluation-boards/cy8cproto-062-4343w/)
 - [开发板原理图](https://www.infineon.com/dgdl/Infineon-CY8CPROTO-062-4343W_Schematic-PCBDesignData-v01_00-EN.pdf?fileId=8ac78c8c7d0d8da4017d0f010c6d183a&utm_source=cypress&utm_medium=referral&utm_campaign=202110_globe_en_all_integration-files)
-- [Cypress 快速上手指南](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/quick-start/CY8CPROTO-062-4343W/quick-start)
+- [Cypress 快速上手指南](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/quick-start/CY8CKIT-062S2-43012/quick-start)
 - [CY8CPROTO-062-4343W_datasheet](https://www.infineon.com/dgdl/Infineon-PSOC_6_MCU_CY8C62X8_CY8C62XA-DataSheet-v17_00-EN.pdf?fileId=8ac78c8c7d0d8da4017d0ee7d03a70b1)
