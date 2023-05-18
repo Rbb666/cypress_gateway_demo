@@ -1,126 +1,104 @@
-# Infineon + RT-Thread 物联网 DEMO
+# Infineon Psoc6-evaluationkit-062S2 说明
 
 ## 简介
 
-这是一个基于 `CY8CPROTO-062-4343W` 开发板 + `RT-Thread` 实现的物联网 DEMO。
+本文档为 `RT-Thread` 为 `PSoC6 CY8CKIT-062S2-43012`开发板提供的 BSP (板级支持包) 说明。
 
-本文将介绍如何一步步从零搭建一个物联网 demo。
+主要内容如下：
 
-下图是整体的设计框图，使用 `RW007` 用于网络通信，使用 `MQTT` 协议连接 One-Net 物联网平台。在主控芯片中添加所需要的软件包、组件等中间件来快速搭建起一个设备上云 Demo。
+- 开发板资源介绍
+- BSP 快速上手
+- 进阶使用方法
 
-## 实际运行效果
+通过阅读快速上手章节开发者可以快速地上手该 BSP，将 RT-Thread 运行在开发板上。在进阶使用指南章节，将会介绍更多高级功能，帮助开发者利用 `RT-Thread` 驱动更多板载资源。
 
-1、在 msh 中输入`onenet_mqtt_demo_start 【WI-Fi 名称】 【WI-Fi 密码】` 命令创建并启动 demo 线程
+## 开发板介绍
 
-![](figures/demo.png)
+`Psoc6-evaluationkit-062S2` 是 RT-Thread 联合英飞凌推出的一款集成32位双核CPU子系统（ ARM Cortex-M4 和 ARM Cortex-M0）的开发板，其具有单周期乘法的150-MHz Arm Cortex-M4F CPU (浮点和存储器保护单元)，100-MHz Cortex M0+ CPU，带单周期乘法和MPU，可以充分发挥 PSoC6 双核芯片性能。
 
-![](figures/wifi_info.png)
+该开发板核心 **板载资源** 如下：
 
-2、在云平台的设备调试页面查看实时刷新的数据。
+- MCU：CY8C624ABZI-S2D44，Cortex-M4主频 150MHz，Cortex-M0主频 100MHz，2MB Flash 和 1MB SRAM
+      MCU手册更多详细信息请参考文档 [PSoC 6 MCU: CY8C62x8, CY8C62xA Datasheet (infineon.com)](https://www.infineon.com/dgdl/Infineon-PSOC_6_MCU_CY8C62X8_CY8C62XA-DataSheet-v17_00-EN.pdf?fileId=8ac78c8c7d0d8da4017d0ee7d03a70b1)
+- 板载资源：microSD card , 触摸滑条，Arduino 接口
+- 开发环境：ModusToolbox 2.0/MDK V5
+  	PSoC® Creator™ 下载链接 [ModusToolbox™ Software - Infineon Technologies](https://www.infineon.com/cms/en/design-support/tools/sdk/modustoolbox-software/)
 
-![](figures/onenet01.png)
+## 外设支持
 
-3、进入[可视化网站](https://open.iot.10086.cn/iotbox/appsquare/appview?openid=edfdb062942604d9b1de5674d7433497)，进行查看/下发数据的上行和下行
+本 BSP 目前对外设的支持情况如下：
 
-![](figures/onenet-demo.png)
+| **片上外设** | **支持情况** | **备注** |
+| :----------: | :----------: | :------: |
+|  USB 转串口  |     支持     |  UART0   |
+|     GPIO     |     支持     |    —     |
+|     UART     |     支持     | UART0-5  |
+|    Touch     |     支持     | 触摸滑条 |
 
-## 准备工作
+## 快速上手
 
-- [RT-Thread studio v2.2.5](https://download-sh-cmcc.rt-thread.org:9151/www/studio/download/RT-Thread%20Studio-v2.2.5-setup-x86_64_202208011830.exe)
+本 BSP 是以 `MDK V5` 和 `RT-Thread Studio` 为开发环境（编译器：ARMClang / GCC），接下来介绍如何将系统运行起来。
 
-- OneNET：[中国移动物联网开放平台](https://open.iot.10086.cn)
-- [CY8CPROTO-062-4343W 开发板](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/quick-start/CY8CPROTO-062-4343W/quick-start)
-- USB-TTL：连接 UART5 （TX:P5_1; RX:P5_0）**波特率 115200**
-- WiFi 网络模块：[RW007](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/application-note/packages/rw007_module_using/an0034-rw007-module-using?id=rw007)
+### 使用 MDK V5 开发
 
-![物理连接](figures/rw007.png)
+#### 硬件连接
 
-各 IO 接口与功能之间的对应关系表：
+使用数据线连接开发板到 PC。
 
-| CY8CPROTO-062-4343W 引脚名 |   功能    |
-| :------------------------: | :-------: |
-|            P6_2            | BOOT0/CLK |
-|            P6_1            |   MISO    |
-|            P6_0            |   MOSI    |
-|           P12_0            | BOOT1/CS  |
-|            P5_7            | INT/BUSY  |
-|            P6_5            |   RESET   |
+#### 编译下载
 
-## 实现过程
+1、配置工程：
 
-1. 打开 RT-Thread studio，导入开发板示例工程：点击 Studio 左上角 `文件—>导入—>RT-Thread Studio项目到工作空间中 `
+首先打开 MDK ，若没有安装 `Infineon-PSoC6` 的芯片支持包会提示在线安装，根据提示安装即可。若受网络问题，可以进入 [keil](https://www.keil.com/dd2/pack) 官网下载安装包，离线安装。
 
-![](figures/studio1.png)
+![mdk_package](E:\workspace_work\rt-thread-5.0\bsp\Infineon\psoc6-cy8ckit-062S2-43012\figures\mdk_package.png)
 
-2. 选择本示例工程的根目录进行导入
+2、 编译此工程：在安装好芯片支持包后，在 `MDK`工程中进行编译。
 
-![](figures/studio2.png)
+3、下载此工程：
 
-3. 进入 `RT-Studio ` 的SDK管理器中，下载英飞凌的 `OpenOCD` 资源包。
+工程默认配置使用板载 `DAP-LINK` 使用 `SWD` 方式下载程序，使用数据线连接开发板，编译之后直接点击下载按钮即可。
 
-   ![](figures/openocd01.png)
+### 使用 RT-Thread Studio 开发
 
-4. 鼠标右键工程，点击 `同步 scons  配置至项目`
+#### 导入工程
 
-   ![](figures/sync_proj.png)
+* 首先打开  `RT-Thread Studio` 开发工具，点加左上角文件—>导入—> RT-Thread Studio项目到工作空间中。
 
-5. 编译、下载，验证运行结果
+![](E:\workspace_work\rt-thread-5.0\bsp\Infineon\psoc6-cy8ckit-062S2-43012\figures\studio1.png)
+
+* 接着选择 `psoc6-evaluationkit-062S2` 开发板支持包的目录，进行导入。
+
+![](E:\workspace_work\rt-thread-5.0\bsp\Infineon\psoc6-cy8ckit-062S2-43012\figures\studio2.png)
+
+#### 编译下载
 
 * 点击 IDE 左上角的构建选项进行工程的编译。
 
-![](figures/studio3-build.png)
+![](E:\workspace_work\rt-thread-5.0\bsp\Infineon\psoc6-cy8ckit-062S2-43012\figures\studio3-build.png)
 
 * 当编译无错误警告时，点击 `Debug` 或 `Download` 选项进行调试/下载。
 
   注：若点击下载并下载成功后串口终端无显示信息，请手动按下复位按键进行重启运行。
 
-  ![](figures/studio4-download.png)
+  ![](E:\workspace_work\rt-thread-5.0\bsp\Infineon\psoc6-cy8ckit-062S2-43012\figures\studio4-download.png)
 
-- 查看系统运行情况
+## 运行结果
 
-> 在串口终端输入命令 `help`、`ps`、`free`、`list_device` 等命令查看系统运行状态
+下载程序成功之后，系统会自动运行。打开终端工具串口助手，选择波特率为 115200。复位设备后，LED 将会以 500HZ 的频率闪烁，而且在终端上可以看到 `RT-Thread` 的输出信息：
 
-6. 连云配置
+注：推荐使用串口调试助手如：`MobaXterm`
 
-- 在[云平台](https://open.iot.10086.cn)创建项目，创建完成后点击控制台进入配置
+```
+ \ | /
+- RT -     Thread Operating System
+ / | \     4.1.1 build Jul 25 2022 18:03:35
+ 2006 - 2022 Copyright by RT-Thread team
+msh >
+```
 
-* 点击 `全部产品服务—>多协议接入` 进入配置界面
+## 联系人
 
-![](figures/onenet03.png)
+维护人:
 
-* 添加产品
-
-![](figures/onenet04.png)
-
-* 输入产品信息
-
-![](figures/onenet05.png)
-
-* 添加设备
-
-![](figures/onenet06.png)
-
-* 输入设备信息
-
-![](figures/onenet07.png)
-
-* 进入 `RT-Thread Studio`，双击本工程下的 `RT-Thread Settings` ，进入工程配置界面
-
-![](figures/studio4.png)
-
-* 对照 `OneNet` 的信息，填写至配置选项中
-
-![](figures/onenet08.png)
-
-![](figures/onenet09.png)
-
-![](figures/studio5.png)
-
-* 编译、下载，验证IOT网关数据上报和下发功能。
-
-## 更多资料
-
-- [开发板官网主页](https://www.infineon.com/cms/en/product/evaluation-boards/cy8cproto-062-4343w/)
-- [开发板原理图](https://www.infineon.com/dgdl/Infineon-CY8CPROTO-062-4343W_Schematic-PCBDesignData-v01_00-EN.pdf?fileId=8ac78c8c7d0d8da4017d0f010c6d183a&utm_source=cypress&utm_medium=referral&utm_campaign=202110_globe_en_all_integration-files)
-- [英飞凌快速上手指南](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/quick-start/CY8CKIT-062S2-43012/quick-start)
-- [CY8CPROTO-062-4343W_datasheet](https://www.infineon.com/dgdl/Infineon-PSOC_6_MCU_CY8C62X8_CY8C62XA-DataSheet-v17_00-EN.pdf?fileId=8ac78c8c7d0d8da4017d0ee7d03a70b1)
+- [Rbb666](https://github.com/Rbb666)

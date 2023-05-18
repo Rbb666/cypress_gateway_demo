@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -19,6 +19,7 @@
 
 #define IRQ_MODE_TRIG_LEVEL         (0x00) /* Trigger: level triggered interrupt */
 #define IRQ_MODE_TRIG_EDGE          (0x01) /* Trigger: edge triggered interrupt */
+#define IRQ_MODE_MASK               (0x01)
 
 void rt_hw_vector_init(void);
 

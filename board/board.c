@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -13,6 +13,12 @@
 void cy_bsp_all_init(void)
 {
     cy_rslt_t result;
+
+#ifdef __ARMCC_VERSION
+#ifndef __NO_SYSTEM_INIT
+    SystemInit();
+#endif
+#endif
 
     /* Initialize the device and board peripherals */
     result = cybsp_init();

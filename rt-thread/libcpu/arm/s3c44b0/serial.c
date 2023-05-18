@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -75,7 +75,7 @@ void rt_serial_init()
     UBRDIV0 = divisor;
 
     /* word length=8bit, stop bit = 1, no parity, use external clock */
-    ULCON0  = 0x03|0x00|0x00;
+    ULCON0  = 0x03;
 
     UCON0   = 0x5;
 }

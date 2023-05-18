@@ -1,7 +1,7 @@
 /*
  *  VMM startup file.
  *
- * COPYRIGHT (C) 2011-2022, Real-Thread Information Technology Ltd
+ * COPYRIGHT (C) 2011-2021, Real-Thread Information Technology Ltd
  * All rights reserved
  *
  * SPDX-License-Identifier: Apache-2.0

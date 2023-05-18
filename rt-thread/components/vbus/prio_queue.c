@@ -1,5 +1,5 @@
 /*
- * COPYRIGHT (C) 2011-2022, Real-Thread Information Technology Ltd
+ * COPYRIGHT (C) 2011-2021, Real-Thread Information Technology Ltd
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -90,7 +90,7 @@ void rt_prio_queue_detach(struct rt_prio_queue *que)
 
         /* get next suspend thread */
         thread = rt_list_entry(que->suspended_pop_list.next, struct rt_thread, tlist);
-        /* set error code to RT_ERROR */
+        /* set error code to -RT_ERROR */
         thread->error = -RT_ERROR;
 
         rt_thread_resume(thread);

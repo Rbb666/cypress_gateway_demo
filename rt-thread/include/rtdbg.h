@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -44,6 +44,13 @@ extern "C" {
 /* it will force output color log when RT_DEBUG_COLOR macro is defined */
 #if defined(RT_DEBUG_COLOR) && !defined(DBG_COLOR)
 #define DBG_COLOR
+#endif
+
+/* for dlog */
+#ifdef PKG_USING_DLOG
+#include <dlog.h>
+#else
+#define DLOG(...)
 #endif
 
 #if defined(RT_USING_ULOG)
