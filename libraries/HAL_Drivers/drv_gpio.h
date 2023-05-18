@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -14,8 +14,7 @@
 #include <rthw.h>
 #include <rtdevice.h>
 #include "drv_common.h"
-
-#include "cyhal_irq_psoc.h"
+#include "cyhal_irq_impl.h"
 
 #define GPIO_INTERRUPT_PRIORITY (7u)
 

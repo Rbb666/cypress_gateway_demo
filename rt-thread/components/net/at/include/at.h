@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -51,7 +51,7 @@ extern "C" {
 #endif
 
 #define AT_CMD_EXPORT(_name_, _args_expr_, _test_, _query_, _setup_, _exec_)   \
-    RT_USED static const struct at_cmd __at_cmd_##_test_##_query_##_setup_##_exec_ RT_SECTION("RtAtCmdTab") = \
+    rt_used static const struct at_cmd __at_cmd_##_test_##_query_##_setup_##_exec_ rt_section("RtAtCmdTab") = \
     {                                                                          \
         _name_,                                                                \
         _args_expr_,                                                           \

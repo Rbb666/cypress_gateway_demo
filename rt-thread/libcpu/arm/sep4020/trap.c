@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -53,7 +53,7 @@ void rt_hw_trap_udef(struct rt_hw_register *regs)
     rt_hw_show_register(regs);
 
     rt_kprintf("undefined instruction\n");
-    rt_kprintf("thread - %s stack:\n", rt_current_thread->name);
+    rt_kprintf("thread - %s stack:\n", rt_current_thread->parent.name);
     rt_hw_backtrace((rt_uint32_t *)regs->fp, (rt_uint32_t)rt_current_thread->entry);
 
     rt_hw_cpu_shutdown();
@@ -89,7 +89,7 @@ void rt_hw_trap_pabt(struct rt_hw_register *regs)
     rt_hw_show_register(regs);
 
     rt_kprintf("prefetch abort\n");
-    rt_kprintf("thread - %s stack:\n", rt_current_thread->name);
+    rt_kprintf("thread - %s stack:\n", rt_current_thread->parent.name);
     rt_hw_backtrace((rt_uint32_t *)regs->fp, (rt_uint32_t)rt_current_thread->entry);
 
     rt_hw_cpu_shutdown();
@@ -108,7 +108,7 @@ void rt_hw_trap_dabt(struct rt_hw_register *regs)
     rt_hw_show_register(regs);
 
     rt_kprintf("data abort\n");
-    rt_kprintf("thread - %s stack:\n", rt_current_thread->name);
+    rt_kprintf("thread - %s stack:\n", rt_current_thread->parent.name);
     rt_hw_backtrace((rt_uint32_t *)regs->fp, (rt_uint32_t)rt_current_thread->entry);
 
     rt_hw_cpu_shutdown();

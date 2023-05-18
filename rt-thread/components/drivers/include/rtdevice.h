@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -155,6 +155,14 @@ extern "C" {
 
 #ifdef RT_USING_TOUCH
 #include "drivers/touch.h"
+#endif
+
+#ifdef RT_USING_DEV_BUS
+#include "drivers/rt_dev_bus.h"
+#endif
+
+#ifdef RT_USING_LCD
+#include "drivers/lcd.h"
 #endif
 
 #ifdef __cplusplus

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -79,7 +79,7 @@ rt_bool_t msh_ishex(char *strvalue)
  *
  * @param strvalue string
  *
- * @return true or false
+ * @return integer transformed from string
  */
 int msh_strtohex(char *strvalue)
 {

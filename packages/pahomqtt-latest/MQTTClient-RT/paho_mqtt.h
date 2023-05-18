@@ -28,7 +28,7 @@
 #define MQTT_TLS_READ_BUFFER    4096
 #endif
 
-enum QoS { QOS0, QOS1, QOS2 } ALIGN(4);
+enum QoS { QOS0, QOS1, QOS2 } rt_align(4);
 
 /* all failure return codes must be negative */
 enum returnCode { PAHO_BUFFER_OVERFLOW = -2, PAHO_FAILURE = -1, PAHO_SUCCESS = 0 };
@@ -90,7 +90,7 @@ struct MQTTClient
     void (*defaultMessageHandler)(MQTTClient *, MessageData *);
 
     /* publish interface */
-    rt_mutex_t pub_mutex;             /* publish data mutex for blocking */
+    rt_sem_t pub_sem;             /* publish data semaphore for blocking */
 #if defined(RT_USING_POSIX_FS) && (defined(RT_USING_DFS_NET) || defined(SAL_USING_POSIX))
     struct rt_pipe_device* pipe_device;
     int pub_pipe[2];
@@ -122,8 +122,8 @@ int paho_mqtt_start(MQTTClient *client);
  * This function publish message to specified mqtt topic.
  * @note it will be discarded, recommend to use "paho_mqtt_publish"
  *
- * @param c the pointer of MQTT context structure
- * @param topicFilter topic filter name
+ * @param client the pointer of MQTT context structure
+ * @param topic topic filter name
  * @param message the pointer of MQTTMessage structure
  *
  * @return the error code, 0 on subscribe successfully.
@@ -166,7 +166,7 @@ int paho_mqtt_unsubscribe(MQTTClient *client, const char *topic);
 /**
  * This function publish message to specified mqtt topic.
  *
- * @param c the pointer of MQTT context structure
+ * @param client the pointer of MQTT context structure
  * @param qos MQTT QOS type, only support QOS1
  * @param topic topic filter name
  * @param msg_str the pointer of send message
@@ -178,7 +178,7 @@ int paho_mqtt_publish(MQTTClient *client, enum QoS qos, const char *topic, const
 /**
  * This function control MQTT client configure, such as connect timeout, reconnect interval.
  *
- * @param c the pointer of MQTT context structure
+ * @param client the pointer of MQTT context structure
  * @param cmd control configure type, 'mqttControl' enumeration shows the supported configure types.
  * @param arg the pointer of argument
  *

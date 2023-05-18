@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -19,7 +19,7 @@ extern "C" {
 
 #include <rtthread.h>
 
-#define RT_DEBUG_USB                    0x01
+#define RT_DEBUG_USB                    0x00
 #define USB_DYNAMIC                     0x00
 
 #define USB_CLASS_DEVICE                0x00

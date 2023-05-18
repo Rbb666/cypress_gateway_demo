@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -24,9 +24,9 @@
 
 static const struct ifx_soft_i2c_config soft_i2c_config[] =
 {
-#ifdef BSP_USING_I2C1
+    #ifdef BSP_USING_I2C1
     I2C1_BUS_CONFIG,
-#endif
+    #endif
 };
 
 static struct ifx_i2c i2c_obj[sizeof(soft_i2c_config) / sizeof(soft_i2c_config[0])];

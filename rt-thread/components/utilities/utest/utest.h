@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -136,9 +136,23 @@ utest_t utest_handle_get(void);
  * @return None
  *
 */
+#ifdef _MSC_VER
+#pragma section("UtestTcTab$f",read)
 #define UTEST_TC_EXPORT(testcase, name, init, cleanup, timeout)                \
-    RT_USED static const struct utest_tc_export _utest_testcase                \
-    RT_SECTION("UtestTcTab") =                                                    \
+    __declspec(allocate("UtestTcTab$f"))                                       \
+    static const struct utest_tc_export _utest_testcase =                      \
+    {                                                                          \
+        name,                                                                  \
+        timeout,                                                               \
+        init,                                                                  \
+        testcase,                                                              \
+        cleanup                                                                \
+     }
+#pragma comment(linker, "/merge:UtestTcTab=tctext")
+#else
+#define UTEST_TC_EXPORT(testcase, name, init, cleanup, timeout)                \
+    rt_used static const struct utest_tc_export _utest_testcase                \
+    rt_section("UtestTcTab") =                                                 \
     {                                                                          \
         name,                                                                  \
         timeout,                                                               \
@@ -146,6 +160,7 @@ utest_t utest_handle_get(void);
         testcase,                                                              \
         cleanup                                                                \
     }
+#endif /* _MSC_VER */
 
 /**
  * UTEST_UNIT_RUN

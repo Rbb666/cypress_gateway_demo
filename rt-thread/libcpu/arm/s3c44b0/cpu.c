@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -100,7 +100,7 @@ rt_base_t rt_hw_cpu_dcache_status()
  * this function will reset CPU
  *
  */
-RT_WEAK void rt_hw_cpu_reset()
+rt_weak void rt_hw_cpu_reset()
 {
 }
 
@@ -108,7 +108,7 @@ RT_WEAK void rt_hw_cpu_reset()
  * this function will shutdown CPU
  *
  */
-RT_WEAK void rt_hw_cpu_shutdown()
+rt_weak void rt_hw_cpu_shutdown()
 {
     rt_kprintf("shutdown...\n");
 

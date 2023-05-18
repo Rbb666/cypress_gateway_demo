@@ -1,8 +1,8 @@
 menu "Hardware Drivers Config"
 
-config SOC_IFX_PSOC6_43012
+config SOC_CY8C624ALQI_S2D42
     bool
-    select SOC_SERIES_IFX_PSOC6
+    select SOC_SERIES_IFX_PSOC62
     select RT_USING_COMPONENTS_INIT
     select RT_USING_USER_MAIN
     default y
@@ -10,9 +10,9 @@ config SOC_IFX_PSOC6_43012
 menu "Onboard Peripheral Drivers"
 
     config BSP_USING_USB_TO_USART
-        bool "Enable USB TO USART (uart5)"
+        bool "Enable USB TO USART (uart6)"
         select BSP_USING_UART
-        select BSP_USING_UART5
+        select BSP_USING_UART6
         default y
 endmenu
 
@@ -30,7 +30,7 @@ menu "On-chip Peripheral Drivers"
         if BSP_USING_UART
             config BSP_USING_UART0
                 bool "Enable UART0"
-                default n
+                default y
             config BSP_USING_UART1
                 bool "Enable UART1"
                 default n
@@ -45,7 +45,10 @@ menu "On-chip Peripheral Drivers"
                 default n
             config BSP_USING_UART5
                 bool "Enable UART5"
-                default y                
+                default n
+            config BSP_USING_UART6
+                bool "Enable UART6"
+                default n
         endif
 
     menuconfig BSP_USING_PWM
@@ -57,12 +60,12 @@ menu "On-chip Peripheral Drivers"
             bool "Enable timer0 output pwm"
             default n
             if BSP_USING_PWM0
-                menuconfig BSP_USING_PWM0_CH3
-                    bool "Enable PWM0 channel3"
+                menuconfig BSP_USING_PWM0_CH0
+                    bool "Enable PWM0 channel0"
                     default n
-                    if BSP_USING_PWM0_CH3
-                        config BSP_USING_PWM0_PORT13
-                        bool "Enable PWM0-PORT13 output pwm"
+                    if BSP_USING_PWM0_CH0
+                        config BSP_USING_PWM0_PORT0
+                        bool "Enable PWM0-PORT0 output pwm"
                         default n
                     endif
                 menuconfig BSP_USING_PWM0_CH7
@@ -106,14 +109,20 @@ menu "On-chip Peripheral Drivers"
         select RT_USING_SPI
         default n
         if BSP_USING_SPI
+            menuconfig BSP_USING_SPI0
+                bool "Enable SPI0 BUS"
+                default n
             menuconfig BSP_USING_SPI3
                 bool "Enable SPI3 BUS"
                 default n
                 if BSP_USING_SPI3
                     config BSP_USING_SPI3_SAMPLE
                         bool "Enable SPI3 BUS Sample"
-                        default n                
+                        default n
                 endif
+            menuconfig BSP_USING_SPI6
+                bool "Enable SPI6 BUS"
+                default n
         endif
 
     menuconfig BSP_USING_ADC
@@ -138,76 +147,27 @@ menu "On-chip Peripheral Drivers"
                 default n
         endif
 
-    config BSP_USING_QSPI_FLASH
-        bool "Enable QSPI BUS"
-        select RT_USING_QSPI
-        select RT_USING_SFUD
-        select RT_SFUD_USING_QSPI
-        default n
-
     menuconfig BSP_USING_HW_I2C
         bool "Enable Hardware I2C Bus"
         default n
         select RT_USING_I2C
         select RT_USING_PIN
         if BSP_USING_HW_I2C
-            config BSP_USING_HW_I2C3
-                bool "Enable I2C3 Bus (User I2C)"
+            config BSP_USING_HW_I2C4
+                bool "Enable I2C4 Bus (User I2C)"
                 default n
-                if BSP_USING_HW_I2C3
-                    comment "Notice: P6_0 --> 48; P6_1 --> 49"
-                    config BSP_I2C3_SCL_PIN
-                        int "i2c3 SCL pin number"
-                        range 1 113
-                        default 48
-                    config BSP_I2C3_SDA_PIN
-                        int "i2c3 SDA pin number"
-                        range 1 113
-                        default 49
-                endif
-            config BSP_USING_HW_I2C6
-                bool "Enable I2C6 Bus (User I2C)"
-                default n
-                if BSP_USING_HW_I2C6
-                    comment "Notice: P13_0 --> 48; P13_1 --> 49"
-                    config BSP_I2C6_SCL_PIN
-                        int "i2c6 SCL pin number"
-                        range 1 113
-                        default 104
-                    config BSP_I2C6_SDA_PIN
-                        int "i2c6 SDA pin number"
-                        range 1 113
-                        default 105
-                endif                
-        endif
-
-    menuconfig BSP_USING_I2C
-        bool "Enable Software I2C Bus"
-        default n
-        select RT_USING_I2C
-        select RT_USING_I2C_BITOPS
-        select RT_USING_PIN
-        if BSP_USING_I2C
-            config BSP_USING_I2C1
-                bool "Enable I2C1 Bus (User I2C)"
-                default n
-                if BSP_USING_I2C1
-                    comment "Notice: P13_1 --> 105; P13_2 --> 106"
-                    config BSP_I2C1_SCL_PIN
-                        int "i2c1 SCL pin number"
-                        range 1 113
-                        default 105
-                    config BSP_I2C1_SDA_PIN
-                        int "i2c1 SDA pin number"
-                        range 1 113
-                        default 106
+                if BSP_USING_HW_I2C4
+                    comment "Notice: P8_0 --> 64; P8_1 --> 65"
+                    config BSP_I2C4_SCL_PIN
+                        int "i2c4 SCL pin number"
+                        range 1 114
+                        default 64
+                    config BSP_I2C4_SDA_PIN
+                        int "i2c4 SDA pin number"
+                        range 1 114
+                        default 65
                 endif
         endif
-
-    config BSP_USING_USBD
-        bool "Enable USB Device"
-        select RT_USING_USB_DEVICE
-        default n
 
     menuconfig BSP_USING_RTC
         bool "Enable RTC"
@@ -234,7 +194,7 @@ menu "On-chip Peripheral Drivers"
         bool "Enable Watchdog Timer"
         select RT_USING_WDT
         default n
-    
+
     menuconfig BSP_USING_DAC
         bool "Enable DAC"
         default n
@@ -260,30 +220,56 @@ menu "On-chip Peripheral Drivers"
                 bool "Enable TIM2"
                 default n
         endif
+
+    menuconfig BSP_USING_LVGL
+        bool "Enable LVGL for LCD"
+        select PKG_USING_LVGL
+        default n
+        if BSP_USING_LVGL
+            config BSP_USING_LCD_ILI9431
+                bool "Enable LVGL for LCD_ILI9431"
+                select PKG_USING_ILI9341
+                select BSP_USING_SPI
+                select BSP_USING_SPI0
+                default n
+        endif
+
+    if BSP_USING_LVGL
+        config BSP_USING_LVGL_DEMO
+            bool "Enable LVGL demo"
+            select PKG_USING_LV_MUSIC_DEMO
+            default y
+    endif        
 endmenu
 
 menu "Board extended module Drivers"
 
     config BSP_USING_SLIDER
-        bool "Enable Slider Demo"
-        select BSP_USING_PWM
-        select BSP_USING_PWM0
-        select BSP_USING_PWM0_CH3
-        select BSP_USING_PWM0_PORT13
+        bool "Enable Slider"
         default n
+    if BSP_USING_SLIDER
+        config BSP_USING_SLIDER_SAMPLE
+            bool "Enable Slider Demo"
+            select BSP_USING_PWM
+            select BSP_USING_PWM0
+            select BSP_USING_PWM0_CH0
+            select BSP_USING_PWM0_PORT0
+            default n
+    endif
 
         menuconfig BSP_USING_RW007
             bool "Enable RW007"
             default n
             select PKG_USING_RW007
             select BSP_USING_SPI
+            select BSP_USING_SPI0
             select RW007_NOT_USE_EXAMPLE_DRIVERS
-            
+
         if BSP_USING_RW007
-            comment "Notice: P5_7 --> 47; P6_2 -->50; P6_5 --> 53; P12_0 --> 96"
+            comment "Notice: P5_7 --> 47; P5_6 -->46; P0_5 --> 5; P0_4 --> 4"
             config IFX_RW007_SPI_BUS_NAME
                 string "RW007 BUS NAME"
-                default "spi3"
+                default "spi0"
 
             config IFX_RW007_WIFI_SSID
                 string "Wi-Fi SSID"
@@ -296,17 +282,17 @@ menu "Board extended module Drivers"
             config IFX_RW007_CS_PIN
                 int "(INT)CS pin index"
                 range 1 113
-                default 96
+                default 5
 
             config IFX_RW007_BOOT0_PIN
                 int "(INT)BOOT0 pin index (same as spi clk pin)"
                 range 1 113
-                default 50
+                default 4
 
             config IFX_RW007_BOOT1_PIN
                 int "(INT)BOOT1 pin index (same as spi cs pin)"
                 range 1 113
-                default 96
+                default 5
 
             config IFX_RW007_INT_BUSY_PIN
                 int "(INT)INT/BUSY pin index"
@@ -314,9 +300,9 @@ menu "Board extended module Drivers"
                 default 47
 
             config IFX_RW007_RST_PIN
-                int "(INT)RESET pin index"
+                int "(INT)RESET pin index"  
                 range 1 113
-                default 53
+                default 46
         endif
 endmenu
 

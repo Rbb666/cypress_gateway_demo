@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -25,7 +25,7 @@
 #ifdef SAL_USING_AT
 
 #ifdef SAL_USING_POSIX
-static int at_poll(struct dfs_fd *file, struct rt_pollreq *req)
+static int at_poll(struct dfs_file *file, struct rt_pollreq *req)
 {
     int mask = 0;
     struct at_socket *sock;

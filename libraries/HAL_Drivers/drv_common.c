@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -87,7 +87,7 @@ void rt_hw_us_delay(rt_uint32_t us)
 /**
  * this function will initial ifx board.
  */
-RT_WEAK void rt_hw_board_init()
+rt_weak void rt_hw_board_init()
 {
     cy_bsp_all_init();
 

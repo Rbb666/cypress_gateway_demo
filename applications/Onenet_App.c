@@ -32,7 +32,7 @@
 #define ONENRT_INIT_WAIT_TIME            (rt_tick_from_millisecond(500))
 
 #define PWM_DEV_NAME "pwm0"
-#define PWM_DEV_CHANNEL 3
+#define PWM_DEV_CHANNEL 0
 #define GET_DUTY_CYCLE(x)       (1 * 1000 * 1000 - x * 10 * 1000)
 
 struct wifi_info
@@ -156,7 +156,7 @@ static void clear_onenet_ui_sta(void)
 
 static void wifi_init_thread_entry(void *parameter)
 {
-    log_i("Try to connect SSID[%s] Password[%s]", wifi.wifi_ssid, wifi.wifi_password);
+    LOG_I("Try to connect SSID[%s] Password[%s]", wifi.wifi_ssid, wifi.wifi_password);
 
     rt_wlan_connect(wifi.wifi_ssid, wifi.wifi_password);
 
