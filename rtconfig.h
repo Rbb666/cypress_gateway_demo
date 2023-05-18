@@ -215,9 +215,6 @@
 /* Utilities */
 
 
-/* RT-Thread Utestcases */
-
-
 /* RT-Thread online packages */
 
 /* IoT - internet of things */
@@ -244,12 +241,13 @@
 /* IoT Cloud */
 
 #define PKG_USING_ONENET
+#define PKG_USING_ONENET_SAMPLE
 #define ONENET_USING_MQTT
-#define ONENET_INFO_DEVID "718305986"
-#define ONENET_INFO_AUTH "Gate"
-#define ONENET_INFO_APIKEY "99=HmhFBlg9=e3Snu8x25qRVfgU="
-#define ONENET_INFO_PROID "426836"
-#define ONENET_MASTER_APIKEY "UvlcNUlBjs=URNWNS9t=atUbybc="
+#define ONENET_INFO_DEVID "537363070"
+#define ONENET_INFO_AUTH "20190719"
+#define ONENET_INFO_APIKEY "Rg=VmRCOZKangyTBGI=AZ0n1PiU="
+#define ONENET_INFO_PROID "264126"
+#define ONENET_MASTER_APIKEY "lcbGQlbYAyOajuM028zAR995SC0="
 #define PKG_USING_ONENET_LATEST_VERSION
 
 /* security packages */
@@ -302,18 +300,12 @@
 
 /* sensors drivers */
 
-#define PKG_USING_HTS221
-#define PKG_USING_HTS221_HUMI
-#define PKG_USING_HTS221_TEMP
-#define PKG_USING_HTS221_LATEST_VERSION
 
 /* touch drivers */
 
 
 /* Kendryte SDK */
 
-#define PKG_USING_I2C_TOOLS
-#define PKG_USING_I2C_TOOLS_LATEST_VERSION
 
 /* AI packages */
 

@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>CY_USING_HAL, __STDC_LIMIT_MACROS, RT_USING_ARMLIBC, CORE_NAME_CM0P_0, COMPONENT_CAT1A, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, CY_USING_PREBUILT_CM0P_IMAGE, __RTTHREAD__, COMPONENT_CAT1, CORE_NAME_CM4_0, CY8C624ALQI_S2D42</Define>
               <Undefine></Undefine>
-              <IncludePath>libraries\IFX_PSOC6_HAL\core-lib\include;packages\i2c-tools-latest;rt-thread\components\libc\compilers\common\include;rt-thread\components\net\netdev\include;rt-thread\components\net\lwip\lwip-2.0.3\src\include;packages\hts221-latest;board\ports;libraries\IFX_PSOC6_HAL\psoc6cm0p;packages\pahomqtt-latest\MQTTPacket\src;rt-thread\components\libc\compilers\common\extension;rt-thread\components\net\sal\include\dfs_net;rt-thread\components\drivers\include;rt-thread\components\net\lwip\port;rt-thread\include;packages\rw007-latest\inc;rt-thread\components\drivers\sensor;libraries\IFX_PSOC6_HAL\mtb_shared\csdidac;rt-thread\components\net\sal\include\socket;rt-thread\libcpu\arm\cortex-m4;rt-thread\libcpu\arm\common;libs\TARGET_RTT-062S2;libraries\IFX_PSOC6_HAL\mtb_shared\serial-flash;rt-thread\components\dfs\dfs_v1\include;rt-thread\components\drivers\include;.;board;rt-thread\components\libc\cplusplus;libraries\IFX_PSOC6_HAL\capsense;rt-thread\components\net\lwip\lwip-2.0.3\src\include\netif;libraries\IFX_PSOC6_HAL\mtb-hal-cat1\include_pvt;libraries\HAL_Drivers;packages\rw007-latest;rt-thread\components\drivers\include;libraries\IFX_PSOC6_HAL\mtb-hal-cat1\include;libraries\IFX_PSOC6_HAL\retarget-io;libraries\IFX_PSOC6_HAL\mtb-hal-cat1\COMPONENT_CAT1A\include;rt-thread\components\libc\compilers\common\extension\fcntl\octal;rt-thread\components\net\sal\impl;rt-thread\components\libc\posix\io\stdio;rt-thread\components\libc\posix\ipc;rt-thread\components\net\lwip\lwip-2.0.3\src\include\ipv4;packages\i2c-tools-latest\src;libraries\IFX_PSOC6_HAL\mtb_shared\usbdev;packages\onenet-latest\inc;libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\cmsis\include;rt-thread\components\libc\posix\io\poll;rt-thread\components\utilities\resource;applications;libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\devices\COMPONENT_CAT1A\include;rt-thread\components\drivers\include;rt-thread\components\drivers\include;packages\pahomqtt-latest\MQTTClient-RT;rt-thread\components\drivers\include;libraries\HAL_Drivers\config;libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\drivers\include;rt-thread\components\finsh;rt-thread\components\drivers\wlan;rt-thread\components\drivers\spi;rt-thread\components\net\sal\include\socket\sys_socket;libs\TARGET_RTT-062S2\config\GeneratedSource;rt-thread\components\net\sal\include;rt-thread\components\dfs\dfs_v1\filesystems\devfs;packages\hts221-latest\libraries;packages\cJSON-latest;packages\tlsf-latest\src</IncludePath>
+              <IncludePath>rt-thread\components\drivers\wlan;libraries\IFX_PSOC6_HAL\capsense;libraries\IFX_PSOC6_HAL\mtb-hal-cat1\COMPONENT_CAT1A\include;rt-thread\components\net\sal\include\socket;rt-thread\include;libraries\HAL_Drivers\config;rt-thread\components\drivers\include;packages\cJSON-latest;libraries\IFX_PSOC6_HAL\mtb_shared\usbdev;libraries\IFX_PSOC6_HAL\retarget-io;libs\TARGET_RTT-062S2;libraries\IFX_PSOC6_HAL\mtb-hal-cat1\include;rt-thread\components\libc\posix\ipc;rt-thread\components\net\sal\include\socket\sys_socket;rt-thread\components\net\lwip\lwip-2.0.3\src\include;rt-thread\components\libc\compilers\common\extension\fcntl\octal;rt-thread\components\utilities\resource;rt-thread\components\finsh;libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\cmsis\include;rt-thread\components\net\lwip\port;.;rt-thread\libcpu\arm\common;rt-thread\components\libc\compilers\common\include;libraries\HAL_Drivers;rt-thread\components\drivers\include;rt-thread\components\net\netdev\include;board\ports;libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\drivers\include;packages\onenet-latest\inc;packages\rw007-latest\inc;packages\pahomqtt-latest\MQTTClient-RT;board;rt-thread\components\drivers\include;packages\tlsf-latest\src;rt-thread\libcpu\arm\cortex-m4;libraries\IFX_PSOC6_HAL\mtb_shared\serial-flash;rt-thread\components\net\lwip\lwip-2.0.3\src\include\ipv4;rt-thread\components\drivers\include;rt-thread\components\net\lwip\lwip-2.0.3\src\include\netif;rt-thread\components\net\sal\include;rt-thread\components\drivers\include;applications;packages\rw007-latest;rt-thread\components\net\sal\include\dfs_net;rt-thread\components\drivers\sensor;libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\devices\COMPONENT_CAT1A\include;rt-thread\components\dfs\dfs_v1\include;rt-thread\components\net\sal\impl;rt-thread\components\libc\cplusplus;rt-thread\components\dfs\dfs_v1\filesystems\devfs;rt-thread\components\libc\compilers\common\extension;libraries\IFX_PSOC6_HAL\core-lib\include;libraries\IFX_PSOC6_HAL\mtb_shared\csdidac;libraries\IFX_PSOC6_HAL\psoc6cm0p;packages\pahomqtt-latest\MQTTPacket\src;libs\TARGET_RTT-062S2\config\GeneratedSource;libraries\IFX_PSOC6_HAL\mtb-hal-cat1\include_pvt;rt-thread\components\drivers\spi;rt-thread\components\drivers\include;rt-thread\components\libc\posix\io\stdio;rt-thread\components\libc\posix\io\poll</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -400,14 +400,14 @@
           <GroupName>cJSON</GroupName>
           <Files>
             <File>
-              <FileName>cJSON_Utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\cJSON-latest\cJSON_Utils.c</FilePath>
-            </File>
-            <File>
               <FileName>cJSON.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\cJSON-latest\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON_Utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\cJSON-latest\cJSON_Utils.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -460,19 +460,9 @@
           <GroupName>CPlusPlus</GroupName>
           <Files>
             <File>
-              <FileName>cxx_crt_init.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>rt-thread\components\libc\cplusplus\cxx_crt_init.c</FilePath>
-            </File>
-            <File>
               <FileName>cxx_crt.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>rt-thread\components\libc\cplusplus\cxx_crt.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>cxx_Semaphore.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>rt-thread\components\libc\cplusplus\cxx_Semaphore.cpp</FilePath>
             </File>
             <File>
               <FileName>cxx_Thread.cpp</FileName>
@@ -483,6 +473,16 @@
               <FileName>cxx_Mutex.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>rt-thread\components\libc\cplusplus\cxx_Mutex.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cxx_crt_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>rt-thread\components\libc\cplusplus\cxx_crt_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>cxx_Semaphore.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>rt-thread\components\libc\cplusplus\cxx_Semaphore.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -757,41 +757,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>hts221</GroupName>
-          <Files>
-            <File>
-              <FileName>hts221.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\hts221-latest\libraries\hts221.c</FilePath>
-            </File>
-            <File>
-              <FileName>sensor_st_hts221.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\hts221-latest\sensor_st_hts221.c</FilePath>
-            </File>
-            <File>
-              <FileName>hts221_reg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\hts221-latest\libraries\hts221_reg.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>i2c-tools</GroupName>
-          <Files>
-            <File>
-              <FileName>i2c_tools.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>packages\i2c-tools-latest\src\i2c_tools.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>i2c_utils.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>packages\i2c-tools-latest\src\i2c_utils.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Kernel</GroupName>
           <Files>
             <File>
@@ -880,9 +845,9 @@
               <FilePath>libraries\IFX_PSOC6_HAL\mtb-hal-cat1\COMPONENT_CAT1A\source\triggers\cyhal_triggers_psoc6_02.c</FilePath>
             </File>
             <File>
-              <FileName>cy_retarget_io.c</FileName>
+              <FileName>psoc6_01_cm0p_sleep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\IFX_PSOC6_HAL\retarget-io\cy_retarget_io.c</FilePath>
+              <FilePath>libraries\IFX_PSOC6_HAL\psoc6cm0p\COMPONENT_CM0P_SLEEP\psoc6_01_cm0p_sleep.c</FilePath>
             </File>
             <File>
               <FileName>cy_scb_i2c.c</FileName>
@@ -910,9 +875,9 @@
               <FilePath>libraries\IFX_PSOC6_HAL\mtb-hal-cat1\source\cyhal_clock.c</FilePath>
             </File>
             <File>
-              <FileName>cy_capsense_centroid.c</FileName>
+              <FileName>cy_capsense_structure.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\IFX_PSOC6_HAL\capsense\cy_capsense_centroid.c</FilePath>
+              <FilePath>libraries\IFX_PSOC6_HAL\capsense\cy_capsense_structure.c</FilePath>
             </File>
             <File>
               <FileName>cy_tcpwm_counter.c</FileName>
@@ -920,19 +885,19 @@
               <FilePath>libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\drivers\source\cy_tcpwm_counter.c</FilePath>
             </File>
             <File>
-              <FileName>cy_capsense_structure.c</FileName>
+              <FileName>psoc6_04_cm0p_sleep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\IFX_PSOC6_HAL\capsense\cy_capsense_structure.c</FilePath>
-            </File>
-            <File>
-              <FileName>psoc6_03_cm0p_sleep.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\IFX_PSOC6_HAL\psoc6cm0p\COMPONENT_CM0P_SLEEP\psoc6_03_cm0p_sleep.c</FilePath>
+              <FilePath>libraries\IFX_PSOC6_HAL\psoc6cm0p\COMPONENT_CM0P_SLEEP\psoc6_04_cm0p_sleep.c</FilePath>
             </File>
             <File>
               <FileName>cy_scb_uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\drivers\source\cy_scb_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>cy_csd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\drivers\source\cy_csd.c</FilePath>
             </File>
             <File>
               <FileName>cy_scb_common.c</FileName>
@@ -943,11 +908,6 @@
               <FileName>cyhal_utils_impl.c</FileName>
               <FileType>1</FileType>
               <FilePath>libraries\IFX_PSOC6_HAL\mtb-hal-cat1\source\cyhal_utils_impl.c</FilePath>
-            </File>
-            <File>
-              <FileName>psoc6_01_cm0p_sleep.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\IFX_PSOC6_HAL\psoc6cm0p\COMPONENT_CM0P_SLEEP\psoc6_01_cm0p_sleep.c</FilePath>
             </File>
             <File>
               <FileName>cyhal_gpio.c</FileName>
@@ -963,6 +923,16 @@
               <FileName>cy_ipc_sema.c</FileName>
               <FileType>1</FileType>
               <FilePath>libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\drivers\source\cy_ipc_sema.c</FilePath>
+            </File>
+            <File>
+              <FileName>psoc6_02_cm0p_sleep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\IFX_PSOC6_HAL\psoc6cm0p\COMPONENT_CM0P_SLEEP\psoc6_02_cm0p_sleep.c</FilePath>
+            </File>
+            <File>
+              <FileName>cy_retarget_io.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\IFX_PSOC6_HAL\retarget-io\cy_retarget_io.c</FilePath>
             </File>
             <File>
               <FileName>cyhal_utils.c</FileName>
@@ -1080,9 +1050,9 @@
               <FilePath>libraries\IFX_PSOC6_HAL\capsense\cy_capsense_processing.c</FilePath>
             </File>
             <File>
-              <FileName>psoc6_02_cm0p_sleep.c</FileName>
+              <FileName>cy_capsense_centroid.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\IFX_PSOC6_HAL\psoc6cm0p\COMPONENT_CM0P_SLEEP\psoc6_02_cm0p_sleep.c</FilePath>
+              <FilePath>libraries\IFX_PSOC6_HAL\capsense\cy_capsense_centroid.c</FilePath>
             </File>
             <File>
               <FileName>cyhal_interconnect.c</FileName>
@@ -1100,14 +1070,9 @@
               <FilePath>libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\devices\COMPONENT_CAT1A\source\cy_device.c</FilePath>
             </File>
             <File>
-              <FileName>cyhal_spi.c</FileName>
+              <FileName>psoc6_03_cm0p_sleep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\IFX_PSOC6_HAL\mtb-hal-cat1\source\cyhal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>psoc6_04_cm0p_sleep.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\IFX_PSOC6_HAL\psoc6cm0p\COMPONENT_CM0P_SLEEP\psoc6_04_cm0p_sleep.c</FilePath>
+              <FilePath>libraries\IFX_PSOC6_HAL\psoc6cm0p\COMPONENT_CM0P_SLEEP\psoc6_03_cm0p_sleep.c</FilePath>
             </File>
             <File>
               <FileName>lib_cy_capsense.lib</FileName>
@@ -1120,9 +1085,9 @@
               <FilePath>libraries\IFX_PSOC6_HAL\capsense\cy_capsense_control.c</FilePath>
             </File>
             <File>
-              <FileName>cy_csd.c</FileName>
+              <FileName>cyhal_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\IFX_PSOC6_HAL\mtb-pdl-cat1\drivers\source\cy_csd.c</FilePath>
+              <FilePath>libraries\IFX_PSOC6_HAL\mtb-hal-cat1\source\cyhal_spi.c</FilePath>
             </File>
             <File>
               <FileName>cy_syspm.c</FileName>
@@ -1145,14 +1110,49 @@
           <GroupName>libs</GroupName>
           <Files>
             <File>
+              <FileName>cycfg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg.c</FilePath>
+            </File>
+            <File>
               <FileName>cycfg_system.c</FileName>
               <FileType>1</FileType>
               <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg_system.c</FilePath>
             </File>
             <File>
+              <FileName>cycfg_capsense.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg_capsense.c</FilePath>
+            </File>
+            <File>
+              <FileName>cycfg_clocks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg_clocks.c</FilePath>
+            </File>
+            <File>
               <FileName>startup_psoc6_02_cm4.S</FileName>
               <FileType>2</FileType>
               <FilePath>libs\TARGET_RTT-062S2\COMPONENT_CM4\TOOLCHAIN_ARM\startup_psoc6_02_cm4.S</FilePath>
+            </File>
+            <File>
+              <FileName>cycfg_peripherals.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg_peripherals.c</FilePath>
+            </File>
+            <File>
+              <FileName>cycfg_routing.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg_routing.c</FilePath>
+            </File>
+            <File>
+              <FileName>cycfg_pins.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg_pins.c</FilePath>
+            </File>
+            <File>
+              <FileName>cybsp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libs\TARGET_RTT-062S2\cybsp.c</FilePath>
             </File>
             <File>
               <FileName>cycfg_qspi_memslot.c</FileName>
@@ -1163,41 +1163,6 @@
               <FileName>system_psoc6_cm4.c</FileName>
               <FileType>1</FileType>
               <FilePath>libs\TARGET_RTT-062S2\COMPONENT_CM4\system_psoc6_cm4.c</FilePath>
-            </File>
-            <File>
-              <FileName>cycfg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg.c</FilePath>
-            </File>
-            <File>
-              <FileName>cycfg_peripherals.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg_peripherals.c</FilePath>
-            </File>
-            <File>
-              <FileName>cycfg_pins.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg_pins.c</FilePath>
-            </File>
-            <File>
-              <FileName>cycfg_capsense.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg_capsense.c</FilePath>
-            </File>
-            <File>
-              <FileName>cybsp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libs\TARGET_RTT-062S2\cybsp.c</FilePath>
-            </File>
-            <File>
-              <FileName>cycfg_routing.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg_routing.c</FilePath>
-            </File>
-            <File>
-              <FileName>cycfg_clocks.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libs\TARGET_RTT-062S2\config\GeneratedSource\cycfg_clocks.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1395,6 +1360,11 @@
           <GroupName>onenet</GroupName>
           <Files>
             <File>
+              <FileName>onenet_sample.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\onenet-latest\samples\onenet_sample.c</FilePath>
+            </File>
+            <File>
               <FileName>onenet_mqtt.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\onenet-latest\src\onenet_mqtt.c</FilePath>
@@ -1410,19 +1380,9 @@
               <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTConnectClient.c</FilePath>
             </File>
             <File>
-              <FileName>MQTTUnsubscribeServer.c</FileName>
+              <FileName>MQTTUnsubscribeClient.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTUnsubscribeServer.c</FilePath>
-            </File>
-            <File>
-              <FileName>paho_mqtt_pipe.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTClient-RT\paho_mqtt_pipe.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTSubscribeClient.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTSubscribeClient.c</FilePath>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTUnsubscribeClient.c</FilePath>
             </File>
             <File>
               <FileName>MQTTDeserializePublish.c</FileName>
@@ -1430,9 +1390,9 @@
               <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTDeserializePublish.c</FilePath>
             </File>
             <File>
-              <FileName>MQTTConnectServer.c</FileName>
+              <FileName>paho_mqtt_pipe.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTConnectServer.c</FilePath>
+              <FilePath>packages\pahomqtt-latest\MQTTClient-RT\paho_mqtt_pipe.c</FilePath>
             </File>
             <File>
               <FileName>MQTTSubscribeServer.c</FileName>
@@ -1450,14 +1410,24 @@
               <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTSerializePublish.c</FilePath>
             </File>
             <File>
-              <FileName>MQTTUnsubscribeClient.c</FileName>
+              <FileName>MQTTConnectServer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTUnsubscribeClient.c</FilePath>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTConnectServer.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTUnsubscribeServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTUnsubscribeServer.c</FilePath>
             </File>
             <File>
               <FileName>MQTTPacket.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTPacket.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSubscribeClient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTSubscribeClient.c</FilePath>
             </File>
           </Files>
         </Group>
