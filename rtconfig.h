@@ -243,11 +243,11 @@
 #define PKG_USING_ONENET
 #define PKG_USING_ONENET_SAMPLE
 #define ONENET_USING_MQTT
-#define ONENET_INFO_DEVID "537363070"
-#define ONENET_INFO_AUTH "20190719"
-#define ONENET_INFO_APIKEY "Rg=VmRCOZKangyTBGI=AZ0n1PiU="
-#define ONENET_INFO_PROID "264126"
-#define ONENET_MASTER_APIKEY "lcbGQlbYAyOajuM028zAR995SC0="
+#define ONENET_INFO_DEVID "718305986"
+#define ONENET_INFO_AUTH "Gate"
+#define ONENET_INFO_APIKEY "99=HmhFBlg9=e3Snu8x25qRVfgU="
+#define ONENET_INFO_PROID "426836"
+#define ONENET_MASTER_APIKEY "UvlcNUlBjs=URNWNS9t=atUbybc="
 #define PKG_USING_ONENET_LATEST_VERSION
 
 /* security packages */
@@ -267,11 +267,15 @@
 
 /* LVGL: powerful and easy-to-use embedded GUI library */
 
+#define PKG_USING_LVGL
+#define PKG_LVGL_THREAD_PRIO 20
+#define PKG_LVGL_THREAD_STACK_SIZE 4096
+#define PKG_LVGL_DISP_REFR_PERIOD 30
+#define PKG_USING_LVGL_SQUARELINE
+#define PKG_LVGL_USING_V08035
+#define PKG_LVGL_VER_NUM 0x08035
 
 /* u8g2: a monochrome graphic library */
-
-
-/* PainterEngine: A cross-platform graphics application framework written in C language */
 
 
 /* tools packages */
@@ -306,8 +310,21 @@
 
 /* Kendryte SDK */
 
+#define PKG_USING_ILI9341
+#define PKG_ILI_9341_SPI_BUS_NAME "spi0"
+#define PKG_ILI_9341_SPI_DEVICE_NAME "spi00"
+#define PKG_ILI_9341_WIDTH 240
+#define PKG_ILI_9341_HEIGHT 320
+#define PKG_ILI_9341_DC_PIN 92
+#define PKG_ILI_9341_RES_PIN 91
+#define PKG_ILI_9341_CS_PIN 93
+#define PKG_ILI_9341_BLK_PIN -1
+#define PKG_USING_ILI9341_LATEST_VERSION
 
 /* AI packages */
+
+
+/* Signal Processing and Control Algorithm Packages */
 
 
 /* miscellaneous packages */
@@ -348,6 +365,7 @@
 
 /* Other */
 
+
 /* Signal IO */
 
 
@@ -382,6 +400,8 @@
 
 #define BSP_I2C4_SCL_PIN 64
 #define BSP_I2C4_SDA_PIN 65
+#define BSP_USING_LVGL
+#define BSP_USING_LCD_ILI9431
 
 /* Board extended module Drivers */
 
@@ -392,8 +412,8 @@
 /* Notice: P5_7 --> 47; P5_6 -->46; P0_5 --> 5; P0_4 --> 4 */
 
 #define IFX_RW007_SPI_BUS_NAME "spi0"
-#define IFX_RW007_WIFI_SSID "realthread_VIP"
-#define IFX_RW007_WIFI_PASSWORD "your wifi password"
+#define IFX_RW007_WIFI_SSID "spotify"
+#define IFX_RW007_WIFI_PASSWORD "02158995663"
 #define IFX_RW007_CS_PIN 5
 #define IFX_RW007_BOOT0_PIN 4
 #define IFX_RW007_BOOT1_PIN 5

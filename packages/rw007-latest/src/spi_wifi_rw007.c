@@ -21,7 +21,7 @@
 #define RW007_LOG_LEVEL DBG_LOG
 #endif
 
-#define DBG_ENABLE
+//#define DBG_ENABLE
 #define DBG_SECTION_NAME "[RW007]"
 #define DBG_LEVEL RW007_LOG_LEVEL
 #define DBG_COLOR

@@ -131,7 +131,7 @@ struct spi_slave_response
 #define SPI_TX_POOL_SIZE 4
 #define SPI_RX_POOL_SIZE 4
 /*  The slave interrupts wait timeout */
-#define SLAVE_INT_TIMEOUT  100
+#define SLAVE_INT_TIMEOUT  800
 
 typedef enum
 {

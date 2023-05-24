@@ -13,7 +13,7 @@
 
 #include <rtconfig.h>
 
-#define LV_USE_PERF_MONITOR     1
+#define LV_USE_PERF_MONITOR     0
 #define LV_COLOR_DEPTH          16
 
 #ifdef PKG_USING_ILI9341
@@ -22,6 +22,11 @@
     #define LV_COLOR_16_SWAP        1
     #define LV_DPI_DEF              99
 #endif
+
+#define LV_FONT_MONTSERRAT_12       1
+#define LV_FONT_MONTSERRAT_14       1
+#define LV_FONT_MONTSERRAT_18       1
+#define LV_COLOR_SCREEN_TRANSP      0
 
 #ifdef PKG_USING_LV_MUSIC_DEMO
 /* music player demo */

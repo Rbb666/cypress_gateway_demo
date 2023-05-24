@@ -13,13 +13,15 @@
 #include <onenet.h>
 #include <math.h>
 
+#include "ui.h"
+
 #define DBG_ENABLE
 #define DBG_COLOR
 #define DBG_SECTION_NAME "onenet.demo"
 #if ONENET_DEBUG
-#define DBG_LEVEL DBG_LOG
+    #define DBG_LEVEL DBG_LOG
 #else
-#define DBG_LEVEL DBG_INFO
+    #define DBG_LEVEL DBG_INFO
 #endif /* ONENET_DEBUG */
 
 #include <rtdbg.h>
@@ -34,6 +36,8 @@
 #define PWM_DEV_NAME "pwm0"
 #define PWM_DEV_CHANNEL 0
 #define GET_DUTY_CYCLE(x)       (1 * 1000 * 1000 - x * 10 * 1000)
+
+#define LED1_PIN     GET_PIN(0, 1)
 
 struct wifi_info
 {
@@ -64,8 +68,8 @@ static void onenet_cmd_rsp_cb(uint8_t *recv_data, size_t recv_size, uint8_t **re
         LOG_D("led state:%d\n", led_rev_data);
 
         led_rev_data == RT_TRUE ?
-                rt_pwm_set(pwm_dev, PWM_DEV_CHANNEL, 1 * 1000 * 1000, GET_DUTY_CYCLE(100)) :
-                rt_pwm_set(pwm_dev, PWM_DEV_CHANNEL, 1 * 1000 * 1000, GET_DUTY_CYCLE(0));
+        rt_pin_write(LED1_PIN, PIN_LOW) :
+        rt_pin_write(LED1_PIN, PIN_HIGH);
 
         if (onenet_mqtt_upload_digit("Led_status", led_rev_data))
         {
@@ -101,11 +105,37 @@ static void onenet_upload_entry(void *parameter)
 {
     int humi_val = 0;
     int tempature_val = 0;
+    int lux_val = 0;
+
+    lv_chart_series_t * ui_Chart_series_1 = lv_chart_add_series(ui_Chart, lv_color_hex(0xFE1068), LV_CHART_AXIS_PRIMARY_Y);
+    lv_chart_series_t * ui_Chart_series_2 = lv_chart_add_series(ui_Chart, lv_color_hex(0x43FF88), LV_CHART_AXIS_PRIMARY_Y);
+    lv_chart_series_t * ui_Chart_series_3 = lv_chart_add_series(ui_Chart, lv_color_hex(0x43FF88), LV_CHART_AXIS_PRIMARY_Y);
+
+    static lv_coord_t ui_Chart_series_1_array[5] = { 0 };
+    static lv_coord_t ui_Chart_series_2_array[5] = { 0 };
+    static lv_coord_t ui_Chart_series_3_array[5] = { 0 };
+    
+    static uint8_t ser_cnt = 0;
 
     while (1)
     {
         humi_val = round(1.0 * rand() / RAND_MAX * 20 + 40);
         tempature_val = round(1.0 * rand() / RAND_MAX * 10 + 20);
+        lux_val = round(1.0 * rand() / RAND_MAX * 5 + 50);
+        
+//        ui_Chart_series_1_array[ser_cnt] = humi_val;
+//        ui_Chart_series_2_array[ser_cnt] = tempature_val;
+//        ui_Chart_series_3_array[ser_cnt] = lux_val;
+//        ser_cnt++;
+//        if (ser_cnt == 5) ser_cnt = 0;
+
+        lv_chart_set_next_value(ui_Chart, ui_Chart_series_1, humi_val);
+        lv_chart_set_next_value(ui_Chart, ui_Chart_series_2, tempature_val);
+        lv_chart_set_next_value(ui_Chart, ui_Chart_series_3, lux_val);
+        
+//        lv_chart_set_ext_y_array(ui_Chart, ui_Chart_series_1, ui_Chart_series_1_array);
+//        lv_chart_set_ext_y_array(ui_Chart, ui_Chart_series_2, ui_Chart_series_2_array);
+//        lv_chart_set_ext_y_array(ui_Chart, ui_Chart_series_3, ui_Chart_series_3_array);
 
         if (onenet_mqtt_upload_digit("temperature", tempature_val) < 0)
         {
@@ -188,7 +218,7 @@ int rt_hw_wlan_init(void)
     rt_thread_t tid = RT_NULL;
 
     tid = rt_thread_create("wifi_init", wifi_init_thread_entry, RT_NULL, WIFI_INIT_THREAD_STACK_SIZE,
-    WIFI_INIT_THREAD_PRIORITY, 20);
+                           WIFI_INIT_THREAD_PRIORITY, 20);
     if (tid)
     {
         rt_thread_startup(tid);
@@ -201,6 +231,17 @@ int rt_hw_wlan_init(void)
 
     return RT_EOK;
 }
+
+int onenet_mqtt_start(void)
+{
+    wifi.wifi_ssid = rt_strdup(IFX_RW007_WIFI_SSID);
+    wifi.wifi_password = rt_strdup(IFX_RW007_WIFI_PASSWORD);
+
+    rt_hw_wlan_init();
+
+    return RT_EOK;
+}
+INIT_APP_EXPORT(onenet_mqtt_start);
 
 int mqtt_demo_start(int argc, char *argv[])
 {
@@ -226,5 +267,5 @@ int mqtt_demo_start(int argc, char *argv[])
 
     return RT_EOK;
 }
-MSH_CMD_EXPORT_ALIAS(mqtt_demo_start, onenet_mqtt_demo_start, start one-net mqtt demo);
+MSH_CMD_EXPORT_ALIAS(mqtt_demo_start, onenet_mqtt_demo_start, start one - net mqtt demo);
 #endif /* FINSH_USING_MSH */

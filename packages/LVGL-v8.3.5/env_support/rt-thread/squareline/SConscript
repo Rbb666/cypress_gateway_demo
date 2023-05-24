@@ -1,0 +1,13 @@
+from building import *
+
+cwd = GetCurrentDir()
+src = ['lv_ui_entry.c']
+
+src += Glob(cwd + '/ui/*.c')
+
+path = [cwd]
+path += [cwd + '/ui']
+
+group = DefineGroup('LVGL-SquareLine', src, CPPPATH=path, depend = ['PKG_USING_LVGL_SQUARELINE'])
+
+Return('group')
