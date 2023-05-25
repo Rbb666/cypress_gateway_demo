@@ -7,11 +7,13 @@
  * Date           Author       Notes
  * 2022-07-28     Rbb666       first version
  */
+#include <stdlib.h>
 
 #include <rtthread.h>
 #include "drv_common.h"
 
 #include <onenet.h>
+#include "ui.h"
 
 #ifdef BSP_USING_SLIDER
 #include "cycfg_capsense.h"
@@ -49,7 +51,7 @@ static rt_sem_t trans_done_semphr = RT_NULL;
     static struct rt_device_pwm *pwm_dev;
 #endif
 
-extern bool onenet_sync_flag;
+extern rt_bool_t onenet_sync_flag;
 
 static void capsense_isr(void)
 {
@@ -170,6 +172,8 @@ static void process_touch(void)
     static uint16_t slider_pos_prev;
     static led_data_t led_data = {LED_ON, LED_MAX_BRIGHTNESS};
 
+    char sl_value[4] = {0};
+
     /* Get slider status */
     slider_touch_info = Cy_CapSense_GetTouchInfo(
                             CY_CAPSENSE_LINEARSLIDER0_WDGT_ID, &cy_capsense_context);
@@ -186,6 +190,10 @@ static void process_touch(void)
         led_update_req = true;
 
         touch_prev_flag = slider_touch_status;
+        
+        lv_slider_set_value(ui_Slider, led_data.brightness, LV_ANIM_OFF);
+        itoa(led_data.brightness, sl_value, 10);
+        lv_label_set_text(ui_Number_PUL, sl_value);
     }
 
     touch_flag = slider_touch_status;

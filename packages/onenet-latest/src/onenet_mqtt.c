@@ -61,6 +61,8 @@ static rt_bool_t init_ok = RT_FALSE;
 static MQTTClient mq_client;
 struct rt_onenet_info onenet_info;
 
+struct rt_completion onenet_cpt;
+
 struct onenet_device
 {
     struct rt_onenet_info *onenet_info;
@@ -109,6 +111,9 @@ static void mqtt_connect_callback(MQTTClient *c)
 static void mqtt_online_callback(MQTTClient *c)
 {
     LOG_D("Enter mqtt_online_callback!");
+
+    /* Transmission is complete. Handle Event */
+    rt_completion_done(&onenet_cpt);
 }
 
 static void mqtt_offline_callback(MQTTClient *c)
@@ -145,6 +150,9 @@ static rt_err_t onenet_mqtt_entry(void)
     mq_client.defaultMessageHandler = mqtt_callback;
 
     paho_mqtt_start(&mq_client);
+
+    /* initialize completion object */
+    rt_completion_init(&onenet_cpt);
 
     return RT_EOK;
 }

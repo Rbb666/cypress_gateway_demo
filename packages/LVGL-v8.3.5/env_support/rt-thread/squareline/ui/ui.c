@@ -30,7 +30,6 @@ lv_obj_t * ui_Label_PUL;
 lv_obj_t * ui_Label_mmHg_3;
 lv_obj_t * ui_Label_Sound;
 lv_obj_t * ui_IMG_BTN_Bg;
-void ui_event_BTN_Power(lv_event_t * e);
 lv_obj_t * ui_BTN_Power;
 lv_obj_t * ui_Chart;
 lv_obj_t * ui_blood_group;
@@ -60,7 +59,7 @@ void blood1_Animation(lv_obj_t * TargetObject, int delay)
     lv_anim_set_time(&PropertyAnimation_0, 2000);
     lv_anim_set_user_data(&PropertyAnimation_0, PropertyAnimation_0_user_data);
     lv_anim_set_custom_exec_cb(&PropertyAnimation_0, _ui_anim_callback_set_x);
-    lv_anim_set_values(&PropertyAnimation_0, 166, 100);
+    lv_anim_set_values(&PropertyAnimation_0, 166, 0);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_linear);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
     lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
@@ -98,14 +97,6 @@ void blood2_Animation(lv_obj_t * TargetObject, int delay)
 }
 
 ///////////////////// FUNCTIONS ////////////////////
-void ui_event_BTN_Power(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target, LV_STATE_CHECKED)) {
-        change_led(e);
-    }
-}
 void ui_event____initial_actions0(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);

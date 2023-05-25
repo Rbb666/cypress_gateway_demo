@@ -87,6 +87,8 @@ struct rt_onenet_ds_info
 };
 typedef struct rt_onenet_ds_info *rt_onenet_ds_info_t;
 
+extern struct rt_completion onenet_cpt;
+
 /* OneNET MQTT initialize. */
 int onenet_mqtt_init(void);
 

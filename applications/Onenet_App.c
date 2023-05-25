@@ -48,7 +48,8 @@ static struct wifi_info wifi;
 
 static struct rt_device_pwm *pwm_dev;
 
-bool onenet_sync_flag = false;
+rt_bool_t onenet_sync_flag = RT_FALSE;
+static rt_bool_t led_rev_data = RT_FALSE;
 
 /* onenet mqtt command response callback and analysis function */
 static void onenet_cmd_rsp_cb(uint8_t *recv_data, size_t recv_size, uint8_t **resp_data, size_t *resp_size)
@@ -61,8 +62,6 @@ static void onenet_cmd_rsp_cb(uint8_t *recv_data, size_t recv_size, uint8_t **re
     cjson_ctl = cJSON_GetObjectItem(cjson_root, "Led");
     if (cjson_ctl->type == cJSON_Number)
     {
-        rt_bool_t led_rev_data = RT_FALSE;
-
         led_rev_data = cjson_ctl->valueint;
 
         LOG_D("led state:%d\n", led_rev_data);
@@ -107,53 +106,34 @@ static void onenet_upload_entry(void *parameter)
     int tempature_val = 0;
     int lux_val = 0;
 
-    lv_chart_series_t * ui_Chart_series_1 = lv_chart_add_series(ui_Chart, lv_color_hex(0xFE1068), LV_CHART_AXIS_PRIMARY_Y);
-    lv_chart_series_t * ui_Chart_series_2 = lv_chart_add_series(ui_Chart, lv_color_hex(0x43FF88), LV_CHART_AXIS_PRIMARY_Y);
-    lv_chart_series_t * ui_Chart_series_3 = lv_chart_add_series(ui_Chart, lv_color_hex(0x43FF88), LV_CHART_AXIS_PRIMARY_Y);
-
-    static lv_coord_t ui_Chart_series_1_array[5] = { 0 };
-    static lv_coord_t ui_Chart_series_2_array[5] = { 0 };
-    static lv_coord_t ui_Chart_series_3_array[5] = { 0 };
-    
-    static uint8_t ser_cnt = 0;
+    lv_chart_series_t *ui_Chart_series_1 = lv_chart_add_series(ui_Chart,
+                                           lv_color_hex(0xFE1068), LV_CHART_AXIS_PRIMARY_Y);
+    lv_chart_series_t *ui_Chart_series_2 = lv_chart_add_series(ui_Chart,
+                                           lv_color_hex(0x43FF88), LV_CHART_AXIS_PRIMARY_Y);
+    lv_chart_series_t *ui_Chart_series_3 = lv_chart_add_series(ui_Chart,
+                                           lv_color_hex(0xFCFF00), LV_CHART_AXIS_PRIMARY_Y);
 
     while (1)
     {
         humi_val = round(1.0 * rand() / RAND_MAX * 20 + 40);
         tempature_val = round(1.0 * rand() / RAND_MAX * 10 + 20);
         lux_val = round(1.0 * rand() / RAND_MAX * 5 + 50);
-        
-//        ui_Chart_series_1_array[ser_cnt] = humi_val;
-//        ui_Chart_series_2_array[ser_cnt] = tempature_val;
-//        ui_Chart_series_3_array[ser_cnt] = lux_val;
-//        ser_cnt++;
-//        if (ser_cnt == 5) ser_cnt = 0;
 
         lv_chart_set_next_value(ui_Chart, ui_Chart_series_1, humi_val);
         lv_chart_set_next_value(ui_Chart, ui_Chart_series_2, tempature_val);
         lv_chart_set_next_value(ui_Chart, ui_Chart_series_3, lux_val);
-        
-//        lv_chart_set_ext_y_array(ui_Chart, ui_Chart_series_1, ui_Chart_series_1_array);
-//        lv_chart_set_ext_y_array(ui_Chart, ui_Chart_series_2, ui_Chart_series_2_array);
-//        lv_chart_set_ext_y_array(ui_Chart, ui_Chart_series_3, ui_Chart_series_3_array);
 
         if (onenet_mqtt_upload_digit("temperature", tempature_val) < 0)
         {
             LOG_E("upload has an error, stop uploading");
-            goto _exit;
         }
 
         if (onenet_mqtt_upload_digit("humidity", humi_val) < 0)
         {
             LOG_E("upload has an error, stop uploading");
-            goto _exit;
         }
 
         rt_thread_delay(rt_tick_from_millisecond(5 * 1000));
-
-_exit:
-        rt_thread_delay(rt_tick_from_millisecond(1 * 1000));
-        continue;
     }
 }
 
@@ -184,6 +164,23 @@ static void clear_onenet_ui_sta(void)
     onenet_mqtt_upload_digit("Led_status", 0);
 }
 
+#define KEY0_PIN_NUM    GET_PIN(6, 2)
+
+static void irq_callback()
+{
+    rt_kprintf("key down\n");
+    _ui_state_modify(ui_BTN_Power, LV_STATE_CHECKED, _UI_MODIFY_STATE_TOGGLE);
+}
+
+int key_example(void)
+{
+    rt_pin_mode(KEY0_PIN_NUM, PIN_MODE_INPUT_PULLUP);
+    rt_pin_attach_irq(KEY0_PIN_NUM, PIN_IRQ_MODE_FALLING, irq_callback, RT_NULL);
+    rt_pin_irq_enable(KEY0_PIN_NUM, PIN_IRQ_ENABLE);
+    return 0;
+}
+MSH_CMD_EXPORT(key_example, key_example);
+
 static void wifi_init_thread_entry(void *parameter)
 {
     LOG_I("Try to connect SSID[%s] Password[%s]", wifi.wifi_ssid, wifi.wifi_password);
@@ -199,18 +196,25 @@ static void wifi_init_thread_entry(void *parameter)
 
     rt_thread_delay(ONENRT_INIT_WAIT_TIME);
 
+    /* set wi-fi icon show */
+    lv_obj_clear_flag(ui_IMG_Wifi, LV_OBJ_FLAG_HIDDEN);
+
     while (RT_EOK != onenet_mqtt_init())
     {
         LOG_E("OneNET initialize failed.");
         rt_thread_delay(ONENRT_INIT_WAIT_TIME);
     }
+
+    /* blocking the thread,and the other tasks can run */
+    rt_completion_wait(&onenet_cpt, RT_WAITING_FOREVER);
+
     onenet_set_cmd_rsp_cb(onenet_cmd_rsp_cb);
 
-    rt_thread_delay(rt_tick_from_millisecond(5 * 1000));
-
     onenet_upload_cycle();
+    
+    key_example();
 
-    onenet_sync_flag = true;
+    onenet_sync_flag = RT_TRUE;
 }
 
 int rt_hw_wlan_init(void)
@@ -243,25 +247,10 @@ int onenet_mqtt_start(void)
 }
 INIT_APP_EXPORT(onenet_mqtt_start);
 
-int mqtt_demo_start(int argc, char *argv[])
+static int mqtt_demo_start(int argc, char *argv[])
 {
-    if (argc != 3)
-    {
-        LOG_E("wifi [ssid]  [password]  - input wifi ssid and password to start demo.");
-        return -RT_ERROR;
-    }
-
-    wifi.wifi_ssid = rt_malloc(sizeof(argv[1]));
-    wifi.wifi_password = rt_malloc(sizeof(argv[2]));
-
-    rt_memset(wifi.wifi_ssid, 0x00, sizeof(argv[1]));
-    rt_memset(wifi.wifi_password, 0x00, sizeof(argv[2]));
-
-    strcpy(wifi.wifi_ssid, argv[1]);
-    strcpy(wifi.wifi_password, argv[2]);
-
-    LOG_HEX("wifi_ssid", 16, wifi.wifi_ssid, sizeof(wifi.wifi_ssid));
-    LOG_HEX("wifi_password", 16, wifi.wifi_password, sizeof(wifi.wifi_password));
+    wifi.wifi_ssid = rt_strdup(IFX_RW007_WIFI_SSID);
+    wifi.wifi_password = rt_strdup(IFX_RW007_WIFI_PASSWORD);
 
     rt_hw_wlan_init();
 

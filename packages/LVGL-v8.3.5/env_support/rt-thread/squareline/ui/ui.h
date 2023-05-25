@@ -36,7 +36,6 @@ extern lv_obj_t * ui_Label_PUL;
 extern lv_obj_t * ui_Label_mmHg_3;
 extern lv_obj_t * ui_Label_Sound;
 extern lv_obj_t * ui_IMG_BTN_Bg;
-void ui_event_BTN_Power(lv_event_t * e);
 extern lv_obj_t * ui_BTN_Power;
 extern lv_obj_t * ui_Chart;
 extern lv_obj_t * ui_blood_group;
