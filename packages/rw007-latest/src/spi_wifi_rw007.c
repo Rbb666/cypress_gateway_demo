@@ -21,7 +21,7 @@
 #define RW007_LOG_LEVEL DBG_LOG
 #endif
 
-//#define DBG_ENABLE
+#define DBG_ENABLE
 #define DBG_SECTION_NAME "[RW007]"
 #define DBG_LEVEL RW007_LOG_LEVEL
 #define DBG_COLOR
@@ -399,7 +399,7 @@ static int wifi_data_transfer(struct rw007_spi *dev, uint16_t seq, uint8_t *rx_b
 #ifdef WLAN_DEV_MONITOR
         packet.first_stage_err++;
 #endif
-        LOG_E("The wifi Stage 1 status %x %x %x %d\r",  resp.magic1, resp.magic2, resp.type, cmd.seq);
+//        LOG_E("The wifi Stage 1 status %x %x %x %d\r",  resp.magic1, resp.magic2, resp.type, cmd.seq);
         goto _cmderr;
     }
 
@@ -434,7 +434,7 @@ static int wifi_data_transfer(struct rw007_spi *dev, uint16_t seq, uint8_t *rx_b
 #ifdef WLAN_DEV_MONITOR
         packet.second_stage_err++;
 #endif
-        LOG_E("The wifi Stage 2 status %x %x %x %x %d %d\r",  resp.magic1, resp.magic2, resp.seq, resp.type, resp.S2M_len, cmd.seq);
+//        LOG_E("The wifi Stage 2 status %x %x %x %x %d %d\r",  resp.magic1, resp.magic2, resp.seq, resp.type, resp.S2M_len, cmd.seq);
         goto _txerr;
     }
 

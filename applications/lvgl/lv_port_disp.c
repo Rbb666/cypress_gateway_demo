@@ -13,7 +13,7 @@
     #include "lcd_ili9341.h"
 #endif
 
-#define COLOR_BUFFER  (LV_HOR_RES_MAX * LV_VER_RES_MAX / 2)
+#define COLOR_BUFFER  (LV_HOR_RES_MAX * LV_VER_RES_MAX)
 
 /*A static or global variable to store the buffers*/
 static lv_disp_draw_buf_t disp_buf;
