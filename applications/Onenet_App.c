@@ -211,7 +211,7 @@ static void wifi_init_thread_entry(void *parameter)
     onenet_set_cmd_rsp_cb(onenet_cmd_rsp_cb);
 
     onenet_upload_cycle();
-    
+
     key_example();
 
     onenet_sync_flag = RT_TRUE;

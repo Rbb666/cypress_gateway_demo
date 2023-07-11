@@ -35,6 +35,16 @@
   "name": "TLSF"
  }, 
  {
+  "path": "/packages/peripherals/sensors/bh1750", 
+  "ver": "v1.0.0", 
+  "name": "BH1750"
+ }, 
+ {
+  "path": "/packages/peripherals/sensors/sht3x", 
+  "ver": "v1.0.0", 
+  "name": "SHT3X"
+ }, 
+ {
   "path": "/packages/peripherals/ili9341", 
   "ver": "latest", 
   "name": "ILI9341"
