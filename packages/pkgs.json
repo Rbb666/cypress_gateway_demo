@@ -48,5 +48,10 @@
   "path": "/packages/peripherals/ili9341", 
   "ver": "latest", 
   "name": "ILI9341"
+ }, 
+ {
+  "path": "/packages/peripherals/i2c-tools", 
+  "ver": "v1.0.0", 
+  "name": "I2C_TOOLS"
  }
 ]

@@ -29,12 +29,12 @@ struct ifx_i2c
     struct rt_i2c_bus_device i2c2_bus;
 };
 
-#ifdef BSP_USING_I2C1
+#ifdef BSP_USING_I2C4
 #define I2C1_BUS_CONFIG                                  \
     {                                                    \
-        .scl = BSP_I2C1_SCL_PIN,                         \
-        .sda = BSP_I2C1_SDA_PIN,                         \
-        .bus_name = "i2c1",                              \
+        .scl = BSP_I2C4_SCL_PIN,                         \
+        .sda = BSP_I2C4_SDA_PIN,                         \
+        .bus_name = "i2c4",                              \
     }
 #endif
 

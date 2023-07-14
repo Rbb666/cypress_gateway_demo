@@ -324,6 +324,8 @@
 #define PKG_ILI_9341_CS_PIN 93
 #define PKG_ILI_9341_BLK_PIN -1
 #define PKG_USING_ILI9341_LATEST_VERSION
+#define PKG_USING_I2C_TOOLS
+#define PKG_USING_I2C_TOOLS_V100
 
 /* AI packages */
 
@@ -416,8 +418,8 @@
 /* Notice: P5_7 --> 47; P5_6 -->46; P0_5 --> 5; P0_4 --> 4 */
 
 #define IFX_RW007_SPI_BUS_NAME "spi0"
-#define IFX_RW007_WIFI_SSID "spotify"
-#define IFX_RW007_WIFI_PASSWORD "02158995663"
+#define IFX_RW007_WIFI_SSID "Rb_2.4G"
+#define IFX_RW007_WIFI_PASSWORD "zhang123"
 #define IFX_RW007_CS_PIN 5
 #define IFX_RW007_BOOT0_PIN 4
 #define IFX_RW007_BOOT1_PIN 5

@@ -12,6 +12,7 @@
 #include <board.h>
 #include <onenet.h>
 #include <math.h>
+#include "sht3x.h"
 
 #include "ui.h"
 
@@ -105,6 +106,8 @@ static void onenet_upload_entry(void *parameter)
     int humi_val = 0;
     int tempature_val = 0;
     int lux_val = 0;
+	extern sht3x_device_t sht3x_dev;
+	extern float light_data;
 
     lv_chart_series_t *ui_Chart_series_1 = lv_chart_add_series(ui_Chart,
                                            lv_color_hex(0xFE1068), LV_CHART_AXIS_PRIMARY_Y);
@@ -115,9 +118,9 @@ static void onenet_upload_entry(void *parameter)
 
     while (1)
     {
-        humi_val = round(1.0 * rand() / RAND_MAX * 20 + 40);
-        tempature_val = round(1.0 * rand() / RAND_MAX * 10 + 20);
-        lux_val = round(1.0 * rand() / RAND_MAX * 5 + 50);
+        humi_val = (int)sht3x_dev->humidity;
+        tempature_val = (int)sht3x_dev->temperature;
+        lux_val = (int)light_data;
 
         lv_chart_set_next_value(ui_Chart, ui_Chart_series_1, humi_val);
         lv_chart_set_next_value(ui_Chart, ui_Chart_series_2, tempature_val);
